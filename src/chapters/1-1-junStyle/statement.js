@@ -24,7 +24,7 @@ const fees = {
   },
 };
 
-function getPrice(key, audience) {
+function calcFee(key, audience) {
   if (!fees[key]) {
     return new Error(`알 수 없는 장르: ${key}`);
   }
@@ -44,27 +44,36 @@ function getPrice(key, audience) {
 }
 
 export function statement(invoice, plays) {
+  let result = "";
   let totalAmount = 0;
   let volumeCredits = 0;
+  let feeResult = "";
 
-  let result = `청구 내역 (고객명: ${invoice.customer})\n`;
+  for (const perf of invoice.performances) {
+    const audience = perf.audience;
+    const type = plays[perf.playID].type;
+    const name = plays[perf.playID].name;
+    const fee = calcFee(type, audience);
 
-  for (let perf of invoice.performances) {
-    const play = plays[perf.playID];
-    let thisAmount = 0;
-    thisAmount += getPrice(play.type, perf.audience);
-
-    // 포인트를 적립한다.
-    volumeCredits += Math.max(perf.audience - 30, 0);
-    // 희극 관객 5명마다 추가 포인트를 제공한다.
-    if ("comedy" === play.type) volumeCredits += Math.floor(perf.audience / 5);
-
-    // 청구 내역을 출력한다.
-    result += ` ${play.name}: ${USD(thisAmount)}(${perf.audience}석)\n`;
-    totalAmount += thisAmount;
+    feeResult += ` ${name}: ${USD(fee)}(${audience}석)\n`;
+    volumeCredits += calcVolumeCredits(audience, type);
+    totalAmount += fee;
   }
 
-  result += `총액: ${USD(totalAmount)}\n`;
-  result += `적립 포인트: ${volumeCredits}점\n`;
+  const billingDetails = `청구 내역 (고객명: ${invoice.customer})\n`;
+  const total = `총액: ${USD(totalAmount)}\n`;
+  const credits = `적립 포인트: ${volumeCredits}점\n`;
+
+  result += billingDetails;
+  result += feeResult;
+  result += total;
+  result += credits;
   return result;
+}
+
+function calcVolumeCredits(audience, type) {
+  let volumeCredits = 0;
+  volumeCredits += Math.max(audience - 30, 0);
+  if ("comedy" === type) volumeCredits += Math.floor(audience / 5);
+  return volumeCredits;
 }
