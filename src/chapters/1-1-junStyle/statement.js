@@ -24,17 +24,18 @@ const fees = {
   },
 };
 
-function calcFee(key, audience) {
-  if (!fees[key]) {
-    return new Error(`알 수 없는 장르: ${key}`);
+function calcFee(type, audience) {
+  const {
+    performanceFee,
+    admissionFee,
+    extraStandard,
+    extraPerformanceFee,
+    extraAdmissinFee,
+  } = fees[type];
+  if (!fees[type]) {
+    return new Error(`알 수 없는 장르: ${type}`);
   }
-  const performanceFee = fees[key].performanceFee;
-  const admissionFee = fees[key].admissionFee;
-  const extraStandard = fees[key].extraStandard;
-  const extraPerformanceFee = fees[key].extraPerformanceFee;
-  const extraAdmissinFee = fees[key].extraAdmissinFee;
   let fee = 0;
-
   fee += performanceFee;
   if (audience > extraStandard) {
     fee += extraPerformanceFee + extraAdmissinFee * (audience - extraStandard);
@@ -50,9 +51,8 @@ export function statement(invoice, plays) {
   let feeResult = "";
 
   for (const perf of invoice.performances) {
-    const audience = perf.audience;
-    const type = plays[perf.playID].type;
-    const name = plays[perf.playID].name;
+    const { audience } = perf;
+    const { type, name } = plays[perf.playID];
     const fee = calcFee(type, audience);
 
     feeResult += ` ${name}: ${USD(fee)}(${audience}석)\n`;
