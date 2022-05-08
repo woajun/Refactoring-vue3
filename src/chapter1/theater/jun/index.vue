@@ -8,7 +8,7 @@ const result = ref("");
 result.value = statement(invoices, plays);
 </script>
 <template>
-  <h1>chpater 01. 1-1 예제 - 개발쭌 수정</h1>
+  <h1>챕터1. 극단 예제 - 개발쭌 수정</h1>
   <br />
   <textarea :value="result" rows="10" cols="50"></textarea>
 </template>
