@@ -2,10 +2,11 @@
 import { ref, computed } from "vue";
 import plays from "./plays";
 import invoices from "./invoices";
-import { statement } from "./statement";
+import { statement, htmlStatement } from "./statement";
 
 const result = ref("");
 result.value = statement(invoices, plays);
+const result2 = htmlStatement(invoices, plays);
 
 const test = computed(() =>
   result.value ==
@@ -26,6 +27,7 @@ const test = computed(() =>
     <br />
     <textarea v-model="result" rows="10" cols="50"></textarea>
   </div>
+  <div v-html="result2"></div>
 </template>
 <style>
 .warning {
