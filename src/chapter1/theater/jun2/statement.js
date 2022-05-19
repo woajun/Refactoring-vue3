@@ -1,7 +1,11 @@
 export function statement(invoice, plays) {
   const mockInvoice = { ...invoice };
+
+  mockInvoice.performances.forEach((perf) => {
+    perf.play = plays[perf.playID];
+  });
+
   console.log(mockInvoice);
-  console.log(plays);
 
   let result = `청구 내역 (고객명: ${invoice.customer})\n`;
 
