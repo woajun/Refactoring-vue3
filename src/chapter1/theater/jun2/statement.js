@@ -3,6 +3,7 @@ export function statement(invoice, plays) {
 
   mockInvoice.performances.forEach((perf) => {
     perf.play = plays[perf.playID];
+    perf.amount = amountFor(perf);
   });
 
   console.log(mockInvoice);
@@ -11,9 +12,7 @@ export function statement(invoice, plays) {
 
   for (let perf of mockInvoice.performances) {
     result +=
-      ` ${perf.play.name}: ` +
-      `${usd(amountFor(perf))}` +
-      `(${perf.audience}석)\n`;
+      ` ${perf.play.name}: ` + `${usd(perf.amount)}` + `(${perf.audience}석)\n`;
   }
 
   result += `총액: ${usd(totalAmount(mockInvoice))}\n`;
@@ -22,11 +21,8 @@ export function statement(invoice, plays) {
 }
 
 function totalAmount(invoice) {
-  let totalAmount = 0;
-  for (let perf of invoice.performances) {
-    totalAmount += amountFor(perf);
-  }
-  return totalAmount;
+  return invoice.performances //
+    .reduce((total, perf) => total + perf.amount, 0);
 }
 
 function calcVolumeCredits(invoice) {
