@@ -5,12 +5,11 @@ export function statement(invoice, plays) {
 
   for (let perf of invoice.performances) {
     const play = plays[perf.playID];
-    let thisAmount = 0;
 
-    thisAmount = calcAmount(play, thisAmount, perf);
-
-    result += ` ${play.name}: ${usd(thisAmount)}(${perf.audience}석)\n`;
-    totalAmount += thisAmount;
+    result +=
+      //
+      ` ${play.name}: ${usd(calcAmount(play, perf))}(${perf.audience}석)\n`;
+    totalAmount += calcAmount(play, perf);
   }
 
   for (let perf of invoice.performances) {
@@ -18,6 +17,7 @@ export function statement(invoice, plays) {
     volumeCredits += Math.max(perf.audience - 30, 0);
     if ("comedy" === play.type) volumeCredits += Math.floor(perf.audience / 5);
   }
+
   result += `총액: ${usd(totalAmount)}\n`;
   result += `적립 포인트: ${volumeCredits}점\n`;
   return result;
@@ -31,7 +31,8 @@ function usd(amount) {
   }).format(amount / 100);
 }
 
-function calcAmount(play, thisAmount, perf) {
+function calcAmount(play, perf) {
+  let thisAmount = 0;
   switch (play.type) {
     case "tragedy": // 비극
       thisAmount = 40000;
