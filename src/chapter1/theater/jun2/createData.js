@@ -2,12 +2,26 @@ export function createData(invoice, plays) {
   const data = { ...invoice };
   data.performances.forEach(enrichPerformance);
   data.totalAmount = totalAmount(data);
-  data.totalVolumeCredits = calcVolumeCredits(data);
+  data.totalVolumeCredits = totalVolumeCredits(data);
   return data;
 
   function enrichPerformance(aPerformance) {
-    aPerformance.play = plays[aPerformance.playID];
+    aPerformance.play = palyFor(aPerformance);
     aPerformance.amount = amountFor(aPerformance);
+    aPerformance.volumeCredits = volumeCreditsFor(aPerformance);
+  }
+
+  function volumeCreditsFor(aPerformance) {
+    let volumeCredits = 0;
+    volumeCredits += Math.max(aPerformance.audience - 30, 0);
+    if (aPerformance.play.type === "comedy") {
+      volumeCredits += Math.floor(aPerformance.audience / 5);
+    }
+    return volumeCredits;
+  }
+
+  function palyFor(aPerformance) {
+    return plays[aPerformance.playID];
   }
 
   function totalAmount(invoice) {
@@ -15,14 +29,9 @@ export function createData(invoice, plays) {
       .reduce((total, perf) => total + perf.amount, 0);
   }
 
-  function calcVolumeCredits(invoice) {
-    let volumeCredits = 0;
-    for (let perf of invoice.performances) {
-      volumeCredits += Math.max(perf.audience - 30, 0);
-      if ("comedy" === perf.play.type)
-        volumeCredits += Math.floor(perf.audience / 5);
-    }
-    return volumeCredits;
+  function totalVolumeCredits(invoice) {
+    return invoice.performances //
+      .reduce((total, perf) => total + perf.volumeCredits, 0);
   }
 
   function amountFor(perf) {
