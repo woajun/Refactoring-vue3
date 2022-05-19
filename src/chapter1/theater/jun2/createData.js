@@ -46,13 +46,11 @@ export function createData(invoice, plays) {
     return thisAmount;
   }
 
-  function totalAmount(invoice) {
-    return invoice.performances //
-      .reduce((total, perf) => total + perf.amount, 0);
+  function totalAmount(data) {
+    return data.performances.reduce((total, p) => total + p.amount, 0);
   }
 
-  function totalVolumeCredits(invoice) {
-    return invoice.performances //
-      .reduce((total, perf) => total + perf.volumeCredits, 0);
+  function totalVolumeCredits(data) {
+    return data.performances.reduce((total, p) => total + p.volumeCredits, 0);
   }
 }
