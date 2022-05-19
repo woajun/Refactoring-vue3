@@ -9,13 +9,11 @@ export function statement(invoice, plays) {
 
   let result = `청구 내역 (고객명: ${mockInvoice.customer})\n`;
 
-  for (let performance of mockInvoice.performances) {
-    const play = plays[performance.playID];
+  for (let perf of mockInvoice.performances) {
     result +=
-      //
-      ` ${play.name}: ${usd(amountFor(play, performance))}(${
-        performance.audience
-      }석)\n`;
+      ` ${perf.play.name}: ` +
+      `${usd(amountFor(perf.play, perf))}` +
+      `(${perf.audience}석)\n`;
   }
 
   result += `총액: ${usd(totalAmount(mockInvoice, plays))}\n`;
