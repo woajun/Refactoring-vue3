@@ -1,5 +1,10 @@
 export function statement(invoice, plays) {
+  const mockInvoice = { ...invoice };
+  console.log(mockInvoice);
+  console.log(plays);
+
   let result = `청구 내역 (고객명: ${invoice.customer})\n`;
+
   for (let performance of invoice.performances) {
     const play = plays[performance.playID];
     result +=
