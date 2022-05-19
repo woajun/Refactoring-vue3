@@ -8,11 +8,15 @@ export function statement(invoice, plays) {
     let thisAmount = 0;
 
     thisAmount = calcAmount(play, thisAmount, perf);
-    volumeCredits += Math.max(perf.audience - 30, 0);
-    if ("comedy" === play.type) volumeCredits += Math.floor(perf.audience / 5);
 
     result += ` ${play.name}: ${usd(thisAmount)}(${perf.audience}석)\n`;
     totalAmount += thisAmount;
+  }
+
+  for (let perf of invoice.performances) {
+    const play = plays[perf.playID];
+    volumeCredits += Math.max(perf.audience - 30, 0);
+    if ("comedy" === play.type) volumeCredits += Math.floor(perf.audience / 5);
   }
   result += `총액: ${usd(totalAmount)}\n`;
   result += `적립 포인트: ${volumeCredits}점\n`;
