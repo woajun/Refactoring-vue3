@@ -1,14 +1,17 @@
 export function createData(invoice, plays) {
-  const data = { ...invoice };
-  data.performances.forEach(enrichPerformance);
-  data.totalAmount = totalAmount(data);
-  data.totalVolumeCredits = totalVolumeCredits(data);
-  return data;
+  const result = {};
+  result.customer = invoice.customer;
+  result.performances = invoice.performances.map(enrichPerformance);
+  result.totalAmount = totalAmount(result);
+  result.totalVolumeCredits = totalVolumeCredits(result);
+  return result;
 
   function enrichPerformance(aPerformance) {
-    aPerformance.play = palyFor(aPerformance);
-    aPerformance.amount = amountFor(aPerformance);
-    aPerformance.volumeCredits = volumeCreditsFor(aPerformance);
+    const result = Object.assign({}, aPerformance);
+    result.play = palyFor(result);
+    result.amount = amountFor(result);
+    result.volumeCredits = volumeCreditsFor(result);
+    return result;
   }
 
   function palyFor(aPerformance) {
