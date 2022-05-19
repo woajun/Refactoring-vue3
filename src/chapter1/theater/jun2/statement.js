@@ -1,22 +1,24 @@
 export function statement(invoice, plays) {
   let result = `청구 내역 (고객명: ${invoice.customer})\n`;
-  for (let perf of invoice.performances) {
-    const play = plays[perf.playID];
+  for (let performance of invoice.performances) {
+    const play = plays[performance.playID];
     result +=
       //
-      ` ${play.name}: ${usd(calcAmount(play, perf))}(${perf.audience}석)\n`;
+      ` ${play.name}: ${usd(amountFor(play, performance))}(${
+        performance.audience
+      }석)\n`;
   }
 
-  result += `총액: ${usd(calcTotalAmount(invoice, plays))}\n`;
+  result += `총액: ${usd(totalAmount(invoice, plays))}\n`;
   result += `적립 포인트: ${calcVolumeCredits(invoice, plays)}점\n`;
   return result;
 }
 
-function calcTotalAmount(invoice, plays) {
+function totalAmount(invoice, plays) {
   let totalAmount = 0;
   for (let perf of invoice.performances) {
     const play = plays[perf.playID];
-    totalAmount += calcAmount(play, perf);
+    totalAmount += amountFor(play, perf);
   }
   return totalAmount;
 }
@@ -39,7 +41,7 @@ function usd(amount) {
   }).format(amount / 100);
 }
 
-function calcAmount(play, perf) {
+function amountFor(play, perf) {
   let thisAmount = 0;
   switch (play.type) {
     case "tragedy": // 비극
