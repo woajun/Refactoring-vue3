@@ -1,24 +1,25 @@
 export function statement(invoice, plays) {
-  let totalAmount = 0;
-  let volumeCredits = 0;
   let result = `청구 내역 (고객명: ${invoice.customer})\n`;
-
   for (let perf of invoice.performances) {
     const play = plays[perf.playID];
-
     result +=
       //
       ` ${play.name}: ${usd(calcAmount(play, perf))}(${perf.audience}석)\n`;
-    totalAmount += calcAmount(play, perf);
   }
 
+  let totalAmount = 0;
+  for (let perf of invoice.performances) {
+    const play = plays[perf.playID];
+    totalAmount += calcAmount(play, perf);
+  }
+  result += `총액: ${usd(totalAmount)}\n`;
+
+  let volumeCredits = 0;
   for (let perf of invoice.performances) {
     const play = plays[perf.playID];
     volumeCredits += Math.max(perf.audience - 30, 0);
     if ("comedy" === play.type) volumeCredits += Math.floor(perf.audience / 5);
   }
-
-  result += `총액: ${usd(totalAmount)}\n`;
   result += `적립 포인트: ${volumeCredits}점\n`;
   return result;
 }
