@@ -7,9 +7,9 @@ export function statement(invoice, plays) {
 
   console.log(mockInvoice);
 
-  let result = `청구 내역 (고객명: ${invoice.customer})\n`;
+  let result = `청구 내역 (고객명: ${mockInvoice.customer})\n`;
 
-  for (let performance of invoice.performances) {
+  for (let performance of mockInvoice.performances) {
     const play = plays[performance.playID];
     result +=
       //
@@ -18,8 +18,8 @@ export function statement(invoice, plays) {
       }석)\n`;
   }
 
-  result += `총액: ${usd(totalAmount(invoice, plays))}\n`;
-  result += `적립 포인트: ${calcVolumeCredits(invoice, plays)}점\n`;
+  result += `총액: ${usd(totalAmount(mockInvoice, plays))}\n`;
+  result += `적립 포인트: ${calcVolumeCredits(mockInvoice, plays)}점\n`;
   return result;
 }
 
