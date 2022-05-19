@@ -7,21 +7,28 @@ export function statement(invoice, plays) {
       ` ${play.name}: ${usd(calcAmount(play, perf))}(${perf.audience}석)\n`;
   }
 
+  result += `총액: ${usd(calcTotalAmount(invoice, plays))}\n`;
+  result += `적립 포인트: ${calcVolumeCredits(invoice, plays)}점\n`;
+  return result;
+}
+
+function calcTotalAmount(invoice, plays) {
   let totalAmount = 0;
   for (let perf of invoice.performances) {
     const play = plays[perf.playID];
     totalAmount += calcAmount(play, perf);
   }
-  result += `총액: ${usd(totalAmount)}\n`;
+  return totalAmount;
+}
 
+function calcVolumeCredits(invoice, plays) {
   let volumeCredits = 0;
   for (let perf of invoice.performances) {
     const play = plays[perf.playID];
     volumeCredits += Math.max(perf.audience - 30, 0);
     if ("comedy" === play.type) volumeCredits += Math.floor(perf.audience / 5);
   }
-  result += `적립 포인트: ${volumeCredits}점\n`;
-  return result;
+  return volumeCredits;
 }
 
 function usd(amount) {
