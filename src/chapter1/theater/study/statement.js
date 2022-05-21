@@ -2,7 +2,12 @@ export function statement(invoice, plays) {
   const statementData = {};
   statementData.customer = invoice.customer;
   statementData.performances = invoice.performances.map(enrichPerformance);
+  statementData.totalAmount = totalAmount();
   return renderPlainText(statementData);
+
+  function totalAmount() {
+    return invoice.performances.reduce((total, p) => total + amountFor(p), 0);
+  }
 
   function enrichPerformance(aPerformance) {
     const result = {};
@@ -45,7 +50,7 @@ export function statement(invoice, plays) {
         perf.audience
       }석)\n`;
     }
-    result += `총액: ${usd(totalAmount())}\n`;
+    result += `총액: ${usd(data.totalAmount)}\n`;
     result += `적립 포인트: ${totalVolumeCredits()}점\n`;
     return result;
 
@@ -68,10 +73,6 @@ export function statement(invoice, plays) {
       if ("comedy" === playFor(aPerformance).type)
         volumeCredits += Math.floor(aPerformance.audience / 5);
       return volumeCredits;
-    }
-
-    function totalAmount() {
-      return invoice.performances.reduce((total, p) => total + amountFor(p), 0);
     }
   }
 }
