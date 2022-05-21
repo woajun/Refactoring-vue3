@@ -22,11 +22,7 @@ export function statement(invoice, plays) {
   result += `적립 포인트: ${volumeCredits}점\n`;
   return result;
   function totalAmount() {
-    let totalAmount = 0;
-    for (let perf of invoice.performances) {
-      totalAmount += amountFor(perf);
-    }
-    return totalAmount;
+    return invoice.performances.reduce((total, p) => total + amountFor(p), 0);
   }
 
   function amountFor(aPerformance) {
