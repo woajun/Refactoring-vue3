@@ -9,7 +9,7 @@ export function statement(invoice, plays) {
   }).format;
 
   for (let perf of invoice.performances) {
-    const play = plays[perf.playID];
+    const play = playFor(perf);
     let thisAmount = 0;
 
     switch (play.type) {
@@ -41,4 +41,8 @@ export function statement(invoice, plays) {
   result += `총액: ${format(totalAmount / 100)}\n`;
   result += `적립 포인트: ${volumeCredits}점\n`;
   return result;
+
+  function playFor(aPerformance) {
+    return plays[aPerformance.playID];
+  }
 }
