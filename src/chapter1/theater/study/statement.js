@@ -3,8 +3,21 @@ export function statement(invoice, plays) {
   statementData.customer = invoice.customer;
   statementData.performances = invoice.performances.map(enrichPerformance);
   statementData.totalAmount = totalAmount();
+  statementData.totalVolumeCredits = totalVolumeCredits();
   return renderPlainText(statementData);
 
+  function totalVolumeCredits() {
+    return invoice.performances //
+      .reduce((total, p) => total + volumeCreditsFor(p), 0);
+  }
+
+  function volumeCreditsFor(aPerformance) {
+    let volumeCredits = 0;
+    volumeCredits += Math.max(aPerformance.audience - 30, 0);
+    if ("comedy" === playFor(aPerformance).type)
+      volumeCredits += Math.floor(aPerformance.audience / 5);
+    return volumeCredits;
+  }
   function totalAmount() {
     return invoice.performances.reduce((total, p) => total + amountFor(p), 0);
   }
@@ -51,7 +64,7 @@ export function statement(invoice, plays) {
       }석)\n`;
     }
     result += `총액: ${usd(data.totalAmount)}\n`;
-    result += `적립 포인트: ${totalVolumeCredits()}점\n`;
+    result += `적립 포인트: ${data.totalVolumeCredits}점\n`;
     return result;
 
     function usd(aNumber) {
@@ -60,19 +73,6 @@ export function statement(invoice, plays) {
         currency: "USD",
         minimumFractionDigits: 2,
       }).format(aNumber / 100);
-    }
-
-    function totalVolumeCredits() {
-      return invoice.performances //
-        .reduce((total, p) => total + volumeCreditsFor(p), 0);
-    }
-
-    function volumeCreditsFor(aPerformance) {
-      let volumeCredits = 0;
-      volumeCredits += Math.max(aPerformance.audience - 30, 0);
-      if ("comedy" === playFor(aPerformance).type)
-        volumeCredits += Math.floor(aPerformance.audience / 5);
-      return volumeCredits;
     }
   }
 }
