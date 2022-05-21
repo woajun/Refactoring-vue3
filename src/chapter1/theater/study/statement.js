@@ -9,14 +9,17 @@ export function statement(invoice, plays) {
   }).format;
 
   for (let perf of invoice.performances) {
-    volumeCredits += Math.max(perf.audience - 30, 0);
-    if ("comedy" === playFor(perf).type)
-      volumeCredits += Math.floor(perf.audience / 5);
-
+    totalAmount += amountFor(perf);
+  }
+  for (let perf of invoice.performances) {
     result += ` ${playFor(perf).name}: ${format(amountFor(perf) / 100)} (${
       perf.audience
     }석)\n`;
-    totalAmount += amountFor(perf);
+  }
+  for (let perf of invoice.performances) {
+    volumeCredits += Math.max(perf.audience - 30, 0);
+    if ("comedy" === playFor(perf).type)
+      volumeCredits += Math.floor(perf.audience / 5);
   }
 
   result += `총액: ${format(totalAmount / 100)}\n`;
