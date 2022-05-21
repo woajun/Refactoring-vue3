@@ -2,18 +2,23 @@ export function statement(invoice, plays) {
   const statementData = {};
   statementData.customer = invoice.customer;
   statementData.performances = invoice.performances.map(enrichPerformance);
-  return renderPlainText(statementData, plays);
+  return renderPlainText(statementData);
 
   function enrichPerformance(aPerformance) {
     const result = {};
     Object.assign(result, aPerformance);
+    result.play = playFor(result);
     return result;
   }
 
-  function renderPlainText(data, plays) {
+  function playFor(aPerformance) {
+    return plays[aPerformance.playID];
+  }
+
+  function renderPlainText(data) {
     let result = `청구 내역 (고객명: ${data.customer})\n`;
     for (let perf of data.performances) {
-      result += ` ${playFor(perf).name}: ${usd(amountFor(perf))} (${
+      result += ` ${perf.play.name}: ${usd(amountFor(perf))} (${
         perf.audience
       }석)\n`;
     }
@@ -66,10 +71,6 @@ export function statement(invoice, plays) {
           throw new Error(`알 수 없는 장르: ${playFor(aPerformance).type}`);
       }
       return result;
-    }
-
-    function playFor(aPerformance) {
-      return plays[aPerformance.playID];
     }
   }
 }
