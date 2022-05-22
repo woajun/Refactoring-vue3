@@ -49,21 +49,7 @@ class PerformanceCalculator {
   }
 
   get amount() {
-    let result = 0;
-    switch (this.play.type) {
-      case "tragedy": // 비극
-        throw new Error("서브클래스에서 계산");
-      case "comedy": // 희극
-        result = 30000;
-        if (this.performance.audience > 20) {
-          result += 10000 + 500 * (this.performance.audience - 20);
-        }
-        result += 300 * this.performance.audience;
-        break;
-      default:
-        throw new Error(`알 수 없는 장르: ${this.play.type}`);
-    }
-    return result;
+    throw new Error("PerformanceCaclulator를 구현한 클래스를 사용하세요.");
   }
 
   get volumeCredits() {
@@ -86,4 +72,13 @@ class TragedyCalculator extends PerformanceCalculator {
   }
 }
 
-class ComedyCalculator extends PerformanceCalculator {}
+class ComedyCalculator extends PerformanceCalculator {
+  get amount() {
+    let result = 30000;
+    if (this.performance.audience > 20) {
+      result += 10000 + 500 * (this.performance.audience - 20);
+    }
+    result += 300 * this.performance.audience;
+    return result;
+  }
+}
