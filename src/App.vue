@@ -3,5 +3,5 @@
 </template>
 
 <script setup>
-import index from "./chapter1/theater/forward2";
+import index from "./chapter1/theater/jun2";
 </script>

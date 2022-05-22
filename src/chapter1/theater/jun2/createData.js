@@ -31,26 +31,9 @@ export function createData(invoice, plays) {
     return volumeCredits;
   }
 
-  function amountFor(perf) {
-    let thisAmount = 0;
-    switch (perf.play.type) {
-      case "tragedy": // 비극
-        thisAmount = 40000;
-        if (perf.audience > 30) {
-          thisAmount += 1000 * (perf.audience - 30);
-        }
-        break;
-      case "comedy": // 희극
-        thisAmount = 30000;
-        if (perf.audience > 20) {
-          thisAmount += 10000 + 500 * (perf.audience - 20);
-        }
-        thisAmount += 300 * perf.audience;
-        break;
-      default:
-        throw new Error(`알 수 없는 장르: ${perf.play.type}`);
-    }
-    return thisAmount;
+  function amountFor(aPerformance) {
+    return new PerformanceCalculator(aPerformance, palyFor(aPerformance))
+      .amount;
   }
 
   function totalAmount(data) {
@@ -66,5 +49,27 @@ class PerformanceCalculator {
   constructor(aPerformance, aPlay) {
     this.performance = aPerformance;
     this.play = aPlay;
+  }
+
+  get amount() {
+    let thisAmount = 0;
+    switch (this.play.type) {
+      case "tragedy": // 비극
+        thisAmount = 40000;
+        if (this.performance.audience > 30) {
+          thisAmount += 1000 * (this.performance.audience - 30);
+        }
+        break;
+      case "comedy": // 희극
+        thisAmount = 30000;
+        if (this.performance.audience > 20) {
+          thisAmount += 10000 + 500 * (this.performance.audience - 20);
+        }
+        thisAmount += 300 * this.performance.audience;
+        break;
+      default:
+        throw new Error(`알 수 없는 장르: ${this.play.type}`);
+    }
+    return thisAmount;
   }
 }
