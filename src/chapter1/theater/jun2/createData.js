@@ -9,7 +9,7 @@ export function createData(invoice, plays) {
   function enrichPerformance(aPerformance) {
     const calculator = new PerformanceCalculator(
       aPerformance,
-      palyFor(aPerformance)
+      playFor(aPerformance)
     );
     const result = Object.assign({}, aPerformance);
     result.play = calculator.play;
@@ -18,17 +18,13 @@ export function createData(invoice, plays) {
     return result;
   }
 
-  function palyFor(aPerformance) {
+  function playFor(aPerformance) {
     return plays[aPerformance.playID];
   }
 
   function volumeCreditsFor(aPerformance) {
-    let volumeCredits = 0;
-    volumeCredits += Math.max(aPerformance.audience - 30, 0);
-    if (aPerformance.play.type === "comedy") {
-      volumeCredits += Math.floor(aPerformance.audience / 5);
-    }
-    return volumeCredits;
+    return new PerformanceCalculator(aPerformance, playFor(aPerformance))
+      .volumeCredits;
   }
 
   function totalAmount(data) {
@@ -66,5 +62,14 @@ class PerformanceCalculator {
         throw new Error(`알 수 없는 장르: ${this.play.type}`);
     }
     return thisAmount;
+  }
+
+  get volumeCredits() {
+    let volumeCredits = 0;
+    volumeCredits += Math.max(this.performance.audience - 30, 0);
+    if (this.play.type === "comedy") {
+      volumeCredits += Math.floor(this.performance.audience / 5);
+    }
+    return volumeCredits;
   }
 }
