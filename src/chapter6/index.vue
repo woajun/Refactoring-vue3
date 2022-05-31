@@ -21,8 +21,8 @@ import forward from './6-1Extract-Function/forward/Init.vue'
 
 const currentView = ref("챕터1");
 const chapters = {
-    "예제": init,
-    "책대로": forward,
-    "준1": jun1,
+    "init": init,
+    "forward": forward,
+    "jun1": jun1,
 }
 </script>

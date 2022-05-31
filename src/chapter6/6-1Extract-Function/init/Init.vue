@@ -1,6 +1,7 @@
 <!-- 6.1 함수 추출하기 Extract Function -->
 <template>
     <div>
+        <h1>init</h1>
         <button @click="printOwing(invoice)">printOwing(invoice)</button>
         <br />
         {{ invoice }}
