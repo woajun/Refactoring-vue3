@@ -20,11 +20,7 @@ function printOwing(invoice) {
 }
 
 function calculateOutstanding(invoice) {
-    let outstanding = 0;
-    for (const o of invoice.orders) {
-        outstanding += o.amount;
-    }
-    return outstanding
+    return invoice.orders.reduce((total, o) => total += o.amount, 0);
 }
 
 function recordDueDate(invoice) {
