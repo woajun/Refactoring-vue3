@@ -29,6 +29,7 @@ const Clock = {
 }
 
 function printOwing(invoice) {
+    makeInvoice(invoice);
 
     console.log("*********************");
     console.log("***** 고객 채무 *****");
@@ -41,6 +42,11 @@ function printOwing(invoice) {
     console.log(`고객명: ${invoice.customer}`);
     console.log(`채무액: ${outstandingFor(invoice)}`)
     console.log(`마감일: ${invoice.dueDate.toLocaleDateString()}`)
+
+    function makeInvoice(invoice) {
+        const result = Object.assign({}, invoice);
+        return result;
+    }
 
     function dueDateFor() {
         const today = Clock.today;
