@@ -14,26 +14,8 @@ const Clock = {
 
 function printOwing(invoice) {
     printBanner();
-    const outstanding = calculateOutstanding(invoice);
-    recordDueDate(invoice);
-    const details = makeDetails(invoice);
-    printDetails(details, invoice, outstanding);
-}
+    printDetails(makeDetails(invoice));
 
-function makeDetails(invoice) {
-    const result = Object.assign({}, invoice);
-    result.outstanding = calculateOutstanding(invoice);
-    result.dueDate = recordDueDate(invoice).toLocaleDateString();
-    return result;
-}
-
-function calculateOutstanding(invoice) {
-    return invoice.orders.reduce((total, o) => total += o.amount, 0);
-}
-
-function recordDueDate() {
-    const today = Clock.today;
-    return new Date(today.getFullYear(), today.getMonth(), today.getDate() + 30);
 }
 
 function printDetails(details) {
@@ -47,4 +29,24 @@ function printBanner() {
     console.log("***** 고객 채무 *****");
     console.log("*********************");
 }
+
+function makeDetails(invoice) {
+    const result = Object.assign({}, invoice);
+    result.outstanding = calculateOutstanding(invoice);
+    result.dueDate = recordDueDate(invoice).toLocaleDateString();
+    return result;
+
+}
+
+function calculateOutstanding(invoice) {
+    return invoice.orders.reduce((total, o) => total += o.amount, 0);
+}
+
+function recordDueDate() {
+    const today = Clock.today;
+    return new Date(today.getFullYear(), today.getMonth(), today.getDate() + 30);
+}
+
+
+
 </script>
