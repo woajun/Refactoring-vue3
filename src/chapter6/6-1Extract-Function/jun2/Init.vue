@@ -22,6 +22,7 @@ function printOwing(invoice) {
 
 function makeDetails(invoice) {
     const result = Object.assign({}, invoice);
+    result.outstanding = calculateOutstanding(invoice);
     return result;
 }
 
@@ -34,9 +35,9 @@ function recordDueDate(invoice) {
     invoice.dueDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 30);
 }
 
-function printDetails(details, invoice, outstanding) {
+function printDetails(details, invoice) {
     console.log(`고객명: ${details.customer}`);
-    console.log(`채무액: ${outstanding}`);
+    console.log(`채무액: ${details.outstanding}`);
     console.log(`마감일: ${invoice.dueDate.toLocaleDateString()}`);
 }
 
