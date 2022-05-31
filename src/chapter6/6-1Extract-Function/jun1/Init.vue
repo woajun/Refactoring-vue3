@@ -29,7 +29,7 @@ const Clock = {
 }
 
 function printOwing(invoice) {
-    makeInvoice(invoice);
+    const made = makeInvoice(invoice);
 
     console.log("*********************");
     console.log("***** 고객 채무 *****");
@@ -39,7 +39,7 @@ function printOwing(invoice) {
     invoice.dueDate = dueDateFor(invoice);
 
     // 세부 사항을 출력한다.
-    console.log(`고객명: ${invoice.customer}`);
+    console.log(`고객명: ${made.customer}`);
     console.log(`채무액: ${outstandingFor(invoice)}`)
     console.log(`마감일: ${invoice.dueDate.toLocaleDateString()}`)
 
