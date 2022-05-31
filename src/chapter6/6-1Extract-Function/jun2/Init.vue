@@ -16,7 +16,13 @@ function printOwing(invoice) {
     printBanner();
     const outstanding = calculateOutstanding(invoice);
     recordDueDate(invoice);
-    printDetails(invoice, outstanding);
+    const details = makeDetails(invoice);
+    printDetails(details, invoice, outstanding);
+}
+
+function makeDetails(invoice) {
+    const result = Object.assign({}, invoice);
+    return result;
 }
 
 function calculateOutstanding(invoice) {
@@ -28,8 +34,8 @@ function recordDueDate(invoice) {
     invoice.dueDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 30);
 }
 
-function printDetails(invoice, outstanding) {
-    console.log(`고객명: ${invoice.customer}`);
+function printDetails(details, invoice, outstanding) {
+    console.log(`고객명: ${details.customer}`);
     console.log(`채무액: ${outstanding}`);
     console.log(`마감일: ${invoice.dueDate.toLocaleDateString()}`);
 }
