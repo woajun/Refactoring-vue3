@@ -1,7 +1,7 @@
 <!-- 6.1 함수 추출하기 Extract Function -->
 <template>
     <div>
-        <h1>준1</h1>
+        <h1>준2</h1>
         <button @click="printOwing(invoice)">printOwing(invoice)</button>
     </div>
 </template>

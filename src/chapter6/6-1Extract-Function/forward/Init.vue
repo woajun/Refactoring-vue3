@@ -3,26 +3,10 @@
     <div>
         <h1>Forward</h1>
         <button @click="printOwing(invoice)">printOwing(invoice)</button>
-        <br />
-        {{ invoice }}
-        <br />*********************
-        <br />***** 고객 채무 *****
-        <br />*********************
-        <br />고객명: 신동민
-        <br />채무액: 14500
-        <br />마감일: 2022. 6. 30.
     </div>
 </template>
 <script setup>
-const invoice = {
-    customer: "신동민",
-    orders: [
-        { amount: 1000 },
-        { amount: 3000 },
-        { amount: 500 },
-        { amount: 10000 },
-    ],
-}
+import invoice from "../invoice.js"
 
 const Clock = {
     today: new Date()

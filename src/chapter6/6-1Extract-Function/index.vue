@@ -14,11 +14,17 @@
 </template>
 <script setup>
 import { ref } from 'vue';
-import one from './6-1Extract-Function'
+import init from './init/Init.vue'
+import forward from './forward/Init.vue'
+import jun1 from './jun1/Init.vue'
+import jun2 from './jun2/Init.vue'
 
 
 const currentView = ref("챕터1");
 const chapters = {
-    "6-1": one,
+    "init": init,
+    "forward": forward,
+    "jun1": jun1,
+    "jun2": jun2,
 }
 </script>
