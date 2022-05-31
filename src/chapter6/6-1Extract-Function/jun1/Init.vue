@@ -1,6 +1,7 @@
 <!-- 6.1 함수 추출하기 Extract Function -->
 <template>
     <div>
+        <h1>준1</h1>
         <button @click="printOwing(invoice)">printOwing(invoice)</button>
         <br />
         {{ invoice }}
@@ -28,16 +29,13 @@ const Clock = {
 }
 
 function printOwing(invoice) {
-    let outstanding = 0;
 
     console.log("*********************");
     console.log("***** 고객 채무 *****");
     console.log("*********************");
 
     // 미해결 채무(outstanding)를 계산한다.
-    for (const o of invoice.orders) {
-        outstanding += o.amount;
-    }
+    const outstanding = outstandingFor(invoice);
 
     // 마감일 (dueDate)을 기록한다.
     const today = Clock.today;
@@ -48,5 +46,12 @@ function printOwing(invoice) {
     console.log(`채무액: ${outstanding}`)
     console.log(`마감일: ${invoice.dueDate.toLocaleDateString()}`)
 
+    function outstandingFor(invoice) {
+        let result = 0;
+        for (const o of invoice.orders) {
+            result += o.amount;
+        }
+        return result
+    }
 }
 </script>
