@@ -40,25 +40,27 @@ function printOwing(invoice) {
 
     // 세부 사항을 출력한다.
     console.log(`고객명: ${made.customer}`);
-    console.log(`채무액: ${outstandingFor(invoice)}`)
+    console.log(`채무액: ${made.outstanding}`)
     console.log(`마감일: ${invoice.dueDate.toLocaleDateString()}`)
 
     function makeInvoice(invoice) {
         const result = Object.assign({}, invoice);
+        result.outstanding = outstandingFor(invoice);
         return result;
+
+        function outstandingFor(invoice) {
+            let result = 0;
+            for (const o of invoice.orders) {
+                result += o.amount;
+            }
+            return result
+        }
     }
 
     function dueDateFor() {
         const today = Clock.today;
         return new Date(today.getFullYear(), today.getMonth(), today.getDate() + 30);
 
-    }
-    function outstandingFor(invoice) {
-        let result = 0;
-        for (const o of invoice.orders) {
-            result += o.amount;
-        }
-        return result
     }
 }
 </script>
