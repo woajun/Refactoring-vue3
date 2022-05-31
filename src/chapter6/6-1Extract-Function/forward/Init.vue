@@ -38,12 +38,13 @@ function printOwing(invoice) {
         outstanding += o.amount;
     }
 
-    // 마감일 (dueDate)을 기록한다.
+    recordDueDate(invoice);
+    printDetails(invoice, outstanding);
+}
+
+function recordDueDate(invoice) {
     const today = Clock.today;
     invoice.dueDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 30);
-
-    printDetails(invoice, outstanding);
-
 }
 
 function printDetails(invoice, outstanding) {
