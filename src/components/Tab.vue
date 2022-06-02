@@ -1,8 +1,10 @@
 <template>
   <div>
     <template v-for="(chapter, key) of chapters" :key="key">
-      <button @click="currentView = key">{{ key }}</button>
+      <button @click="currentView = key">{{ key }}</button>&nbsp;
     </template>
+    now : {{ currentView }}
+
     <template v-for="(chapter, key) of chapters" :key="key">
       <div v-show="currentView === key">
         <component :is="chapter" />

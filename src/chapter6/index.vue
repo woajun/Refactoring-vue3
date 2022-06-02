@@ -1,25 +1,15 @@
 <template>
-  <div>
-    <div>
-      <template v-for="(chapter, key) of chapters" :key="key">
-        <button @click="currentView = key">{{ key }}</button>
-      </template>
-      <template v-for="(chapter, key) of chapters" :key="key">
-        <div v-show="currentView === key">
-          <component :is="chapter" />
-        </div>
-      </template>
-    </div>
-  </div>
+  <Tab :chapters="chapters"></Tab>
 </template>
 <script setup>
-import { ref } from "vue";
+import Tab from "@/components/Tab.vue";
 import one from "./6-1Extract-Function";
 import two from "./6-2Inline-Function";
+import three from "./6-3Extract-Variable";
 
-const currentView = ref("챕터1");
 const chapters = {
   "6-1": one,
   "6-2": two,
+  "6-3": three,
 };
 </script>
