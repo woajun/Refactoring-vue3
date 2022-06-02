@@ -7,10 +7,10 @@ const order = {
   itemPrice: 1000,
 };
 function doSomething(order) {
-  return (
-    order.quantity * order.itemPrice -
-    Math.max(0, order.quantity - 500) * order.itemPrice * 0.05 +
-    Math.min(order.quantity * order.itemPrice * 0.1, 100)
-  );
+  const totalAmount = order.quantity * order.itemPrice;
+  const quantityDiscount =
+    Math.max(0, order.quantity - 500) * order.itemPrice * 0.05;
+  const shipping = Math.min(order.quantity * order.itemPrice * 0.1, 100);
+  return totalAmount - quantityDiscount + shipping;
 }
 </script>
