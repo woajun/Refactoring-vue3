@@ -20,6 +20,10 @@ function randomValue() {
 }
 
 function rating(aDriver) {
-  return aDriver.numberOfLateDeliveries ? 2 : 1;
+  return moreThanFiveLateDeliveries(aDriver) ? 2 : 1;
+}
+
+function moreThanFiveLateDeliveries(dvr) {
+  return dvr.numberOfLateDeliveries > 5;
 }
 </script>
