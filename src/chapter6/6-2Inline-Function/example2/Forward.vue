@@ -16,11 +16,7 @@ const customer = reactive({
 function reportLines(aCustomer) {
   const lines = [];
   lines.push(["name", aCustomer.name]);
-  getherCustomerData(lines, aCustomer);
+  lines.push(["location", aCustomer.location]);
   return lines;
-}
-
-function getherCustomerData(out, aCustomer) {
-  out.push(["location", aCustomer.location]);
 }
 </script>
