@@ -19,7 +19,7 @@ import ex1Jun1 from "./example1/Jun1.vue";
 import ex1Forward1 from "./example1/Forward.vue";
 import ex2Init from "./example2/Init.vue";
 import ex2Forward1 from "./example2/Forward.vue";
-// import jun2 from "./jun2/Init.vue";
+import ex2Jun1 from "./example2/Jun1.vue";
 
 const currentView = ref("챕터1");
 const chapters = {
@@ -28,6 +28,6 @@ const chapters = {
   ex1Jun1: ex1Jun1,
   ex2Init: ex2Init,
   ex2Forward1: ex2Forward1,
-  // "jun2": jun2,
+  ex2Jun1: ex2Jun1,
 };
 </script>
