@@ -6,13 +6,13 @@
     {{result}}
 </template>
 <script setup>
-import init from "./init";
+import example from "./example";
 import {ref} from "vue";
 let result = ref();
 
 
 const examples = [
-  {name:"init",method:init}
+  {name:"example",method:example}
 ];
 
 function doResult(method){
