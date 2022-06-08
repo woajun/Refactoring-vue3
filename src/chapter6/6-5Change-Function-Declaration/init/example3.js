@@ -1,5 +1,7 @@
-function circum2(radius) {
-  return 2 * Math.PI * radius;
-}
+export class Book {
+  _reservations = [];
 
-export { circum2 };
+  addReservation(customer) {
+    this._reservations.push(customer);
+  }
+}

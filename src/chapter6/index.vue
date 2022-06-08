@@ -8,6 +8,7 @@ import two from "./6-2Inline-Function";
 import three from "./6-3Extract-Variable";
 import four from "./6-4Inline-Variable";
 import five from "./6-5Change-Function-Declaration";
+import eight from "./6-8Introduce-Parameter-Object";
 
 const chapters = {
   "6-1": one,
@@ -15,5 +16,6 @@ const chapters = {
   "6-3": three,
   "6-4": four,
   "6-5": five,
+  "6-8": eight,
 };
 </script>
