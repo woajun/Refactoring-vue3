@@ -33,6 +33,11 @@ export default () => {
     temperatureCeiling: 55,
   };
 
+  // eslint-disable-next-line no-unused-vars
+  const range = new NumberRange(
+    operatingPlan.temperatureFloor,
+    operatingPlan.temperatureCeiling
+  );
   const alerts = readingsOutsideRange(
     station,
     operatingPlan.temperatureFloor,
