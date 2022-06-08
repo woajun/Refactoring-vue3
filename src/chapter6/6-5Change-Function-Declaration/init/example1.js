@@ -1,5 +1,5 @@
-function circum(radious) {
-  return 2 * Math.PI * radious;
+function circum(radius) {
+  return 2 * Math.PI * radius;
 }
 
 export { circum };
