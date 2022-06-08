@@ -1,11 +1,15 @@
 <template>
-  {{ circum(10) }}
-  <br/>
-  {{ circum2(10) }}
-
-
+  <Tab :chapters="chapters"></Tab>
 </template>
 <script setup>
-import {circum} from "./example1"
-import {circum2} from "./example2"
+import Tab from "@/components/Tab.vue";
+import init from "./init";
+// import forward from "./forward";
+// import jun from "./jun";
+
+const chapters = {
+    init,
+    // forward,
+    // jun
+};
 </script>
