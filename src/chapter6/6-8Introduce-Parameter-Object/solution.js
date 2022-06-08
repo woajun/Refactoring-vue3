@@ -23,7 +23,8 @@ export default () => {
     ],
   };
 
-  function readingsOutsideRange(station, min, max) {
+  // eslint-disable-next-line no-unused-vars
+  function readingsOutsideRange(station, min, max, range) {
     return station.readings.filter((r) => r.temp < min || r.temp > max);
   }
 
@@ -35,7 +36,8 @@ export default () => {
   const alerts = readingsOutsideRange(
     station,
     operatingPlan.temperatureFloor,
-    operatingPlan.temperatureCeiling
+    operatingPlan.temperatureCeiling,
+    null
   );
 
   return alerts;
