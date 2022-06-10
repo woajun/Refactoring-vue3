@@ -19,12 +19,14 @@ export default () => {
     get customer() {
       return this._customer;
     }
+    get baseCharge() {
+      return baseRate(this.month, this.year) * this.quantity;
+    }
   }
+
   function client1() {
-    const aReading = acquireReading();
-    const baseCharge =
-      baseRate(aReading.month, aReading.year) * aReading.quantity;
-    return baseCharge;
+    const aReading = new Reading(acquireReading());
+    return aReading.baseCharge;
   }
 
   function client2() {
