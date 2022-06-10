@@ -6,6 +6,10 @@ export default () => {
   function enrichReading(original) {
     const result = cloneDeep(original);
     result.baseCharge = calculateBaseCharge(result);
+    result.taxableCharge = Math.max(
+      0,
+      result.baseCharge - taxThreshold(result.year)
+    );
     return result;
 
     function calculateBaseCharge(aReading) {
@@ -20,11 +24,7 @@ export default () => {
 
   function client2() {
     const aReading = enrichReading(acquireReading());
-    const taxableCharge = Math.max(
-      0,
-      aReading.baseCharge - taxThreshold(aReading.year)
-    );
-    return taxableCharge;
+    return aReading.taxableCharge;
   }
 
   function client3() {
