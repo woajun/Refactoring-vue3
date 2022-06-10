@@ -2,7 +2,7 @@
   <Tab :chapters="chapters"></Tab>
   <template v-for= "(section,i) in sections" :key="i">
     <template v-for="(example,i) in section" :key="i">
-      <button @click="example.method()">{{example.name}}</button>
+      <button @click="executeExample(example)">{{example.name}}</button>
     </template> 
   </template>
 </template>
@@ -26,4 +26,9 @@ const chapters = {
 };
 
 const sections = [nine];
+
+function executeExample(example) {
+  console.log(`====='${example.name}' 실행=====`)
+  example.method();
+}
 </script>
