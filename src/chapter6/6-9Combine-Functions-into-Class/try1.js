@@ -22,6 +22,9 @@ export default () => {
     get baseCharge() {
       return baseRate(this.month, this.year) * this.quantity;
     }
+    get taxableCharge() {
+      return Math.max(0, this.baseCharge - taxThreshold(this.year));
+    }
   }
 
   function client1() {
@@ -31,11 +34,7 @@ export default () => {
 
   function client2() {
     const aReading = new Reading(acquireReading());
-    const taxableCharge = Math.max(
-      0,
-      aReading.baseCharge - taxThreshold(aReading.year)
-    );
-    return taxableCharge;
+    return aReading.taxableCharge;
   }
 
   function client3() {
