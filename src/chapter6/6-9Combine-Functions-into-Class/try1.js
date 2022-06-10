@@ -1,4 +1,25 @@
 export default () => {
+  // eslint-disable-next-line no-unused-vars
+  class Reading {
+    constructor(data) {
+      this._year = data.year;
+      this._month = data.month;
+      this._quantity = data.quantity;
+      this._customer = data.customer;
+    }
+    get year() {
+      return this._year;
+    }
+    get month() {
+      return this._month;
+    }
+    get quantity() {
+      return this._quantity;
+    }
+    get customer() {
+      return this._customer;
+    }
+  }
   function client1() {
     const aReading = acquireReading();
     const baseCharge =
