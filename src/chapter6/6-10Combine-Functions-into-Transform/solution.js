@@ -14,10 +14,8 @@ export default () => {
   }
 
   function client1() {
-    const aReading = acquireReading();
-    const baseCharge =
-      baseRate(aReading.month, aReading.year) * aReading.quantity;
-    return baseCharge;
+    const aReading = enrichReading(acquireReading());
+    return aReading.baseCharge;
   }
 
   function client2() {
