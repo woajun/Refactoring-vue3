@@ -19,7 +19,7 @@ export default () => {
       return this._year;
     }
 
-    get calculateBaseCharge() {
+    get baseCharge() {
       return baseRate(this.month, this.year) * this.quantity;
     }
   }
@@ -41,7 +41,7 @@ export default () => {
   function client3() {
     const rawReading = acquireReading();
     const aReading = new Reading(rawReading);
-    const basicChargeAmount = aReading.calculateBaseCharge;
+    const basicChargeAmount = aReading.baseCharge;
     return basicChargeAmount;
   }
 
