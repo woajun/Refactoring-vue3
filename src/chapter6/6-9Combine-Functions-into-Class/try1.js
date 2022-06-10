@@ -38,13 +38,8 @@ export default () => {
   }
 
   function client3() {
-    const aReading = acquireReading();
-    const basicChargeAmount = calculateBaseCharge(aReading);
-    return basicChargeAmount;
-
-    function calculateBaseCharge(aReading) {
-      return baseRate(aReading.month, aReading.year) * aReading.quantity;
-    }
+    const aReading = new Reading(acquireReading());
+    return aReading.baseCharge;
   }
 
   function acquireReading() {
