@@ -17,6 +17,7 @@ import five from "./6-5Change-Function-Declaration";
 import eight from "./6-8Introduce-Parameter-Object";
 import nine from "./6-9Combine-Functions-into-Class";
 import ten from "./6-10Combine-Functions-into-Transform";
+import eleven from "./6-11Split-Phase";
 
 const chapters = {
   "6-1": one,
@@ -27,7 +28,7 @@ const chapters = {
   "6-8": eight,
 };
 
-const sections = {"6-9":nine, "6-10":ten};
+const sections = {"6-9":nine, "6-10":ten, "6-11":eleven};
 
 function executeExample(example) {
   console.log(`====='${example.name}' 실행=====`)
