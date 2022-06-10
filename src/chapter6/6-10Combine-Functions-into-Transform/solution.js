@@ -2,11 +2,12 @@ export default () => {
   function cloneDeep(object) {
     return JSON.parse(JSON.stringify(object));
   }
-  // eslint-disable-next-line no-unused-vars
+
   function enrichReading(original) {
     const result = cloneDeep(original);
     return result;
   }
+
   function client1() {
     const aReading = acquireReading();
     const baseCharge =
@@ -22,7 +23,8 @@ export default () => {
   }
 
   function client3() {
-    const aReading = acquireReading();
+    const rawReading = acquireReading();
+    const aReading = enrichReading(rawReading);
     const basicChargeAmount = calculateBaseCharge(aReading);
     return basicChargeAmount;
 
