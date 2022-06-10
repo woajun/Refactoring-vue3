@@ -36,7 +36,8 @@ export default () => {
   }
 
   function client3() {
-    const aReading = acquireReading();
+    const rawReading = acquireReading();
+    const aReading = new Reading(rawReading);
     const basicChargeAmount = calculateBaseCharge(aReading);
     return basicChargeAmount;
 
