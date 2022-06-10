@@ -29,24 +29,18 @@ export default () => {
   }
 
   function client1() {
-    const rawReading = acquireReading();
-    const aReading = new Reading(rawReading);
-    const baseCharge = aReading.baseCharge;
-    return baseCharge;
+    const aReading = new Reading(acquireReading());
+    return aReading.baseCharge;
   }
 
   function client2() {
-    const rawReading = acquireReading();
-    const aReading = new Reading(rawReading);
-    const taxableCharge = aReading.taxableCharge;
-    return taxableCharge;
+    const aReading = new Reading(acquireReading());
+    return aReading.taxableCharge;
   }
 
   function client3() {
-    const rawReading = acquireReading();
-    const aReading = new Reading(rawReading);
-    const basicChargeAmount = aReading.baseCharge;
-    return basicChargeAmount;
+    const aReading = new Reading(acquireReading());
+    return aReading.baseCharge;
   }
 
   function acquireReading() {
