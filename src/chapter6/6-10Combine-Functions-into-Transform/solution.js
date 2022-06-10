@@ -5,7 +5,12 @@ export default () => {
 
   function enrichReading(original) {
     const result = cloneDeep(original);
+    result.baseCharge = calculateBaseCharge(result);
     return result;
+
+    function calculateBaseCharge(aReading) {
+      return baseRate(aReading.month, aReading.year) * aReading.quantity;
+    }
   }
 
   function client1() {
@@ -25,12 +30,8 @@ export default () => {
   function client3() {
     const rawReading = acquireReading();
     const aReading = enrichReading(rawReading);
-    const basicChargeAmount = calculateBaseCharge(aReading);
+    const basicChargeAmount = aReading.baseCharge;
     return basicChargeAmount;
-
-    function calculateBaseCharge(aReading) {
-      return baseRate(aReading.month, aReading.year) * aReading.quantity;
-    }
   }
 
   function acquireReading() {
