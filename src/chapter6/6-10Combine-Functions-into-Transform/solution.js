@@ -28,10 +28,8 @@ export default () => {
   }
 
   function client3() {
-    const rawReading = acquireReading();
-    const aReading = enrichReading(rawReading);
-    const basicChargeAmount = aReading.baseCharge;
-    return basicChargeAmount;
+    const aReading = enrichReading(acquireReading());
+    return aReading.baseCharge;
   }
 
   function acquireReading() {
