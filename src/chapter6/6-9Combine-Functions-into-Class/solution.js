@@ -1,5 +1,4 @@
 export default () => {
-  // eslint-disable-next-line no-unused-vars
   class Reading {
     constructor(data) {
       this._customer = data.customer;
@@ -18,6 +17,10 @@ export default () => {
     }
     get year() {
       return this._year;
+    }
+
+    get calculateBaseCharge() {
+      return baseRate(this.month, this.year) * this.quantity;
     }
   }
 
@@ -38,12 +41,8 @@ export default () => {
   function client3() {
     const rawReading = acquireReading();
     const aReading = new Reading(rawReading);
-    const basicChargeAmount = calculateBaseCharge(aReading);
+    const basicChargeAmount = aReading.calculateBaseCharge;
     return basicChargeAmount;
-
-    function calculateBaseCharge(aReading) {
-      return baseRate(aReading.month, aReading.year) * aReading.quantity;
-    }
   }
 
   function acquireReading() {
