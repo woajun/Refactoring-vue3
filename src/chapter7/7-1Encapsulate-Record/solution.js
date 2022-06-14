@@ -18,10 +18,6 @@ export default () => {
     country: "GB",
   });
 
-  // eslint-disable-next-line no-unused-vars
-  function getRawDataOfOrganization() {
-    return organization._data;
-  }
   function getOrganization() {
     return organization;
   }
