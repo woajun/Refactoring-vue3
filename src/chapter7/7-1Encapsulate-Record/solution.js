@@ -13,6 +13,10 @@ export default () => {
   function getRawDataOfOrganization() {
     return organization._data;
   }
+  // eslint-disable-next-line no-unused-vars
+  function getOrganization() {
+    return organization;
+  }
 
   function print() {
     const newName = "토니 민수 제이슨";
