@@ -3,6 +3,14 @@ export default () => {
     constructor(data) {
       this._data = data;
     }
+
+    set name(aString) {
+      this._data.name = aString;
+    }
+
+    get name() {
+      return this._data.name;
+    }
   }
 
   const organization = new Organization({
@@ -10,10 +18,10 @@ export default () => {
     country: "GB",
   });
 
+  // eslint-disable-next-line no-unused-vars
   function getRawDataOfOrganization() {
     return organization._data;
   }
-  // eslint-disable-next-line no-unused-vars
   function getOrganization() {
     return organization;
   }
@@ -21,11 +29,11 @@ export default () => {
   function print() {
     const newName = "토니 민수 제이슨";
     let result;
-    result = `이름: ${getRawDataOfOrganization().name}`;
+    result = `이름: ${getOrganization().name}`;
     console.log(result);
 
-    organization.name = newName;
-    result = `이름: ${getRawDataOfOrganization().name}`;
+    getOrganization().name = newName;
+    result = `이름: ${getOrganization().name}`;
     console.log(result);
   }
   print();
