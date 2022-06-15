@@ -2,7 +2,6 @@ import rawCustomerData from "./condition";
 export default () => {
   let customerData = JSON.parse(JSON.stringify(rawCustomerData));
 
-  // eslint-disable-next-line no-unused-vars
   function getRawDataOfCustomers() {
     return customerData;
   }
@@ -13,13 +12,14 @@ export default () => {
   }
 
   function compareUsage(customerID, laterYear, month) {
-    const later = customerData[customerID].usages[laterYear][month];
-    const earlier = customerData[customerID].usages[laterYear - 1][month];
+    const later = getRawDataOfCustomers()[customerID].usages[laterYear][month];
+    const earlier =
+      getRawDataOfCustomers()[customerID].usages[laterYear - 1][month];
     return { laterAmount: later, change: later - earlier };
   }
 
   function writeAmount(customerID, year, month, amount) {
-    customerData[customerID].usages[year][month] = amount;
+    getRawDataOfCustomers()[customerID].usages[year][month] = amount;
   }
 
   function print() {
