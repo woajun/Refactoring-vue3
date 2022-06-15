@@ -1,15 +1,22 @@
+import rawCustomerData from "./condition";
 export default () => {
-  const organization = { name: "애크미 구스베리", country: "GB" };
+  const customerData = JSON.parse(JSON.stringify(rawCustomerData));
+
+  function compareUsage(customerID, laterYear, month) {
+    const later = customerData[customerID].usages[laterYear][month];
+    const earlier = customerData[customerID].usages[laterYear - 1][month];
+    return { laterAmount: later, change: later - earlier };
+  }
+
+  function writeAmount(customerID, year, month, amount) {
+    customerData[customerID].usages[year][month] = amount;
+  }
 
   function print() {
-    const newName = "토니 민수 제이슨";
-    let result;
-    result = `이름: ${organization.name}`;
-    console.log(result);
-
-    organization.name = newName;
-    result = `이름: ${organization.name}`;
-    console.log(result);
+    console.log(compareUsage(1920, 2016, 2));
+    writeAmount(1920, 2016, 2, 100);
+    console.log(compareUsage(1920, 2016, 2));
   }
+
   print();
 };
