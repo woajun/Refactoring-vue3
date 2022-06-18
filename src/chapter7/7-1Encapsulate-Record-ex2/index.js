@@ -1,9 +1,17 @@
-import example from "./ex";
-import solution from "./solution";
-import try1 from "./try1";
+import example from "./example";
 
-export default [
-  { name: "예제", method: example },
-  { name: "풀이", method: solution },
-  { name: "연습1", method: try1 },
-];
+class Executor {
+  constructor(name, js) {
+    this.name = name;
+    this.js = js;
+  }
+  get method() {
+    console.log(this.js.compareUsage(1920, 2016, 2));
+    this.js.writeAmount(1920, 2016, 2, 100);
+    console.log(this.js.compareUsage(1920, 2016, 2));
+    return print;
+  }
+}
+export default [new Executor("예제", example)];
+
+function print() {}
