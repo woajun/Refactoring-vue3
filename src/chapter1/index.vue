@@ -3,9 +3,13 @@ import plays from "./condition/plays";
 import invoices from "./condition/invoices";
 import expect from "./condition/output";
 import example from "./example/statement.js";
+import solution1 from "./solution1/statement.js";
+import solution2 from "./solution2/statement.js";
 import { ref } from "vue";
 const statements = {
   예제: example,
+  중간풀이: solution1,
+  풀이: solution2,
   // A : A,
   // B : B,
   // ...
