@@ -1,12 +1,3 @@
-<template>
-  <Tab :chapters="chapters"></Tab>
-  <template v-for= "(section,key) in sections" :key="key">
-    <br/><br/>{{key}} : 
-    <template v-for="(example,i) in section" :key="i">
-      <button @click="executeExample(example)">{{example.name}}</button>&nbsp;
-    </template> 
-  </template>
-</template>
 <script setup>
 import Tab from "@/components/Tab.vue";
 import one from "./6-1Extract-Function";
@@ -28,10 +19,19 @@ const chapters = {
   "6-8": eight,
 };
 
-const sections = {"6-9":nine, "6-10":ten, "6-11":eleven};
+const sections = { "6-9": nine, "6-10": ten, "6-11": eleven };
 
 function executeExample(example) {
-  console.log(`====='${example.name}' 실행=====`)
+  console.log(`====='${example.name}' 실행=====`);
   example.method();
 }
 </script>
+<template>
+  <Tab :chapters="chapters"></Tab>
+  <template v-for="(section, key) in sections" :key="key">
+    <br /><br />{{ key }} :
+    <template v-for="(example, i) in section" :key="i">
+      <button @click="executeExample(example)">{{ example.name }}</button>&nbsp;
+    </template>
+  </template>
+</template>
