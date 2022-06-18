@@ -1,9 +1,15 @@
-import example from "./ex";
-import solution from "./solution";
-import try1 from "./try1";
+import example from "./example";
 
-export default [
-  { name: "예제", method: example },
-  { name: "풀이", method: solution },
-  { name: "연습1", method: try1 },
-];
+class Executor {
+  constructor(name, js) {
+    this.name = name;
+    this.js = js;
+  }
+  get result() {
+    return this.js;
+  }
+  get expect() {
+    return `{"name":"애크미 구스베리","country":"GB"}<h1>애크미 구스베리</h1>{"name":"유재석","country":"GB"}`;
+  }
+}
+export default [new Executor("예제", example)];
