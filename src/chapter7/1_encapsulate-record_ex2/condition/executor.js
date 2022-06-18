@@ -1,13 +1,13 @@
 export default class Executor {
-  constructor(name, js) {
+  constructor(name, object) {
     this.name = name;
-    this.js = js;
+    this.object = object;
   }
   get result() {
     let message = "";
-    message += JSON.stringify(this.js.compareUsage(1920, 2016, 2));
-    this.js.writeAmount(1920, 2016, 2, 100);
-    message += JSON.stringify(this.js.compareUsage(1920, 2016, 2));
+    message += JSON.stringify(this.object.compareUsage(1920, 2016, 2));
+    this.object.writeAmount(1920, 2016, 2, 100);
+    message += JSON.stringify(this.object.compareUsage(1920, 2016, 2));
     return message;
   }
   get expect() {
