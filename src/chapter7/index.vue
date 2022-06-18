@@ -6,5 +6,5 @@ import Chapter from "@/components/Chapter.vue";
 const sections = { "7-1 예제1": one, "7-1 예제2": oneSecond };
 </script>
 <template>
-  <Chapter :sections="sections" />
+  <chapter :sections="sections" />
 </template>

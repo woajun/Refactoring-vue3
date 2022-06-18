@@ -5,48 +5,30 @@ import expect from "./condition/output";
 import example from "./example/statement.js";
 import solution1 from "./solution1/statement.js";
 import solution2 from "./solution2/statement.js";
-import { ref } from "vue";
-const statements = {
-  예제: example,
-  중간풀이: solution1,
-  풀이: solution2,
-  // A : A,
-  // B : B,
-  // ...
-};
+import Chapter from "../components/Chapter.vue";
 
-const result = ref("");
-const test = ref(true);
-const title = ref("선택 없음");
+class Executor {
+  constructor(name, statement) {
+    this.name = name;
+    this.statement = statement;
+  }
+  get result() {
+    return this.statement ? this.statement(invoices, plays) : undefined;
+  }
+  get expect() {
+    return expect;
+  }
+}
 
-const execute = function (statement, key) {
-  result.value = statement(invoices, plays);
-  test.value = result.value === expect ? true : false;
-  title.value = key;
-};
+const executors = [
+  new Executor("예제", example),
+  new Executor("중간풀이", solution1),
+  new Executor("풀이", solution2),
+];
+const junExecutors = [new Executor("연습1")];
+
+const sections = { "마틴 파울러": executors, 강준희: junExecutors };
 </script>
 <template>
-  <br />
-  <template v-for="(statement, key) in statements" :key="key">
-    <button @click="execute(statement, key)">{{ key }}</button>&nbsp;
-  </template>
-  <br />
-  <br />
-  <h3>{{ title }}</h3>
-  <br />
-  <textarea
-    :class="[test ? 'success' : 'fail']"
-    v-model="result"
-    rows="10"
-    cols="50"
-  ></textarea>
+  <chapter :sections="sections"></chapter>
 </template>
-
-<style>
-.success {
-  background-color: green;
-}
-.fail {
-  background-color: red;
-}
-</style>

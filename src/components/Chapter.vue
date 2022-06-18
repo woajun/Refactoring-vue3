@@ -9,7 +9,7 @@ defineProps({ sections: Object });
 
 function execute(example) {
   result.value = example.result;
-  test.value = example.expect;
+  test.value = example.expect === example.result;
   title.value = example.name;
 }
 </script>
@@ -22,6 +22,7 @@ function execute(example) {
     v-model="result"
     rows="10"
     cols="50"
+    disabled
   ></textarea>
   <template v-for="(section, key) in sections" :key="key">
     <br />
