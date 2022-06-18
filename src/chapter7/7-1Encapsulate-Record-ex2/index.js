@@ -5,13 +5,16 @@ class Executor {
     this.name = name;
     this.js = js;
   }
-  get method() {
-    console.log(this.js.compareUsage(1920, 2016, 2));
+  get result() {
+    let message = "";
+    message += JSON.stringify(this.js.compareUsage(1920, 2016, 2));
     this.js.writeAmount(1920, 2016, 2, 100);
-    console.log(this.js.compareUsage(1920, 2016, 2));
-    return print;
+    message += JSON.stringify(this.js.compareUsage(1920, 2016, 2));
+    return message;
+  }
+  get expect() {
+    return `{"laterAmount":55,"change":-8}{"laterAmount":100,"change":37}`;
   }
 }
-export default [new Executor("예제", example)];
 
-function print() {}
+export default [new Executor("예제", example)];
