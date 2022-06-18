@@ -4,7 +4,7 @@
 
 <script setup>
 import Tab from "@/components/Tab.vue";
-import chapter1 from "./chapter1/theater/jun2";
+import chapter1 from "./chapter1";
 import chapter6 from "./chapter6";
 import chapter7 from "./chapter7";
 

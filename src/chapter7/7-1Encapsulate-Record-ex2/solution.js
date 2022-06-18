@@ -4,6 +4,10 @@ export default () => {
     constructor(data) {
       this._data = data;
     }
+
+    setUsage(customerID, year, month, amount) {
+      getRawDataOfCustomers()[customerID].usages[year][month] = amount;
+    }
   }
   let customerData = JSON.parse(JSON.stringify(rawCustomerData));
 
@@ -28,7 +32,7 @@ export default () => {
   }
 
   function setUsage(customerID, year, month, amount) {
-    getRawDataOfCustomers()[customerID].usages[year][month] = amount;
+    getCustomerData()[customerID].usages[year][month] = amount;
   }
 
   function print() {
