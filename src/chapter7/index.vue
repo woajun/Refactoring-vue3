@@ -1,6 +1,6 @@
 <script setup>
-import one from "./7-1Encapsulate-Record";
-import oneSecond from "./7-1Encapsulate-Record-ex2";
+import one from "./1_encapsulate-record";
+import oneSecond from "./1_encapsulate-record_ex2";
 import { ref } from "vue";
 
 const result = ref("");
