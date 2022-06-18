@@ -4,22 +4,31 @@ import invoices from "./condition/invoices";
 import expect from "./condition/output";
 import example from "./example/statement.js";
 import { ref } from "vue";
-const statements = { 문제: example };
+const statements = {
+  예제: example,
+  // A : A,
+  // B : B,
+  // ...
+};
 
 const result = ref("");
 const test = ref(true);
+const title = ref("선택 없음");
 
-const doSomething = function (statement) {
+const execute = function (statement, key) {
   result.value = statement(invoices, plays);
-  test.value = result.value === expect ? true : true;
+  test.value = result.value === expect ? true : false;
+  title.value = key;
 };
 </script>
 <template>
   <br />
   <template v-for="(statement, key) in statements" :key="key">
-    <button @click="doSomething(statement)">{{ key }}</button>&nbsp;
+    <button @click="execute(statement, key)">{{ key }}</button>&nbsp;
   </template>
   <br />
+  <br />
+  <h3>{{ title }}</h3>
   <br />
   <textarea
     :class="[test ? 'success' : 'fail']"
