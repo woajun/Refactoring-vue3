@@ -1,13 +1,15 @@
 <script setup>
-import one from "./1_extract-function";
-import two_1 from "./2_inline-function";
-import two_2 from "./2_inline-function_2";
+import ch6_1 from "./1_extract-function";
+import ch6_2_1 from "./2_inline-function";
+import ch6_2_2 from "./2_inline-function_2";
+import ch6_2_3 from "./2_inline-function_3";
 import Chapter from "@/components/Chapter.vue";
 
 const sections = {
-  "6-1 예제": one,
-  "6.2 Inline Function_1": two_1,
-  "6.2 Inline Function_2": two_2,
+  "6-1 예제": ch6_1,
+  "6.2 Inline Function_1": ch6_2_1,
+  "6.2 Inline Function_2": ch6_2_2,
+  "6.2 Inline Function_3": ch6_2_3,
 };
 </script>
 <template>

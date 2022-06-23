@@ -1,7 +1,7 @@
 export default class Executor {
   constructor(buttonName, result, expect) {
     this.name = buttonName;
-    this.result = result;
-    this.expect = expect;
+    this.result = JSON.stringify(result);
+    this.expect = JSON.stringify(expect);
   }
 }
