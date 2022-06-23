@@ -8,6 +8,7 @@ import ch6_3_2 from "./3_extract-variable_2";
 import ch6_4 from "./4_inline-variable";
 import ch6_5 from "./5_change-function-declaration";
 import ch6_5_2 from "./5_change-function-declaration_2";
+import ch6_5_3 from "./5_change-function-declaration_3";
 import Chapter from "@/components/Chapter.vue";
 
 const sections = {
@@ -20,6 +21,7 @@ const sections = {
   "4 Inline Variable": ch6_4,
   "5_1 Change Funciton Declaration": ch6_5,
   "5_2 Change Funciton Declaration": ch6_5_2,
+  "5_3 Change Funciton Declaration": ch6_5_3,
 };
 </script>
 <template>
