@@ -1,15 +1,14 @@
 import invoice from "./invoice.js";
 export default class Executor {
-  constructor(name, method) {
+  constructor(name, method, expect) {
     this.name = name;
     this.method = method;
+    this.expectResult = expect;
   }
   get result() {
     return this.method(invoice);
   }
   get expect() {
-    return `고객명: 홍길동
-채무액: 14500
-마감일: 2022. 7. 18.`;
+    return this.expectResult(invoice);
   }
 }
