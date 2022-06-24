@@ -37,6 +37,8 @@ function execute(example) {
 <style>
 .success {
   background-color: green;
+  color: white;
+  font-size: 18px;
 }
 .fail {
   background-color: red;
