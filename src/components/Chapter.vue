@@ -25,13 +25,13 @@ function execute(example) {
     disabled
   ></textarea>
   <template v-for="(section, key) in sections" :key="key">
-    <br />
-    <br />
-    <label>{{ key }} : </label>
-    <template v-for="(example, i) in section" :key="i">
-      <button @click="execute(example)">{{ example.name }}</button>
-      &nbsp;
-    </template>
+    <div class="row">
+      <label>{{ key }} : </label>
+      <template v-for="(example, i) in section" :key="i">
+        <button @click="execute(example)">{{ example.name }}</button>
+        &nbsp;
+      </template>
+    </div>
   </template>
 </template>
 <style>
@@ -42,5 +42,8 @@ function execute(example) {
 }
 .fail {
   background-color: red;
+}
+.row {
+  margin-top: 3px;
 }
 </style>
