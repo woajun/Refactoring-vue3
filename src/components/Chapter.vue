@@ -18,6 +18,7 @@ function execute(example) {
   <h3>{{ title }}</h3>
   <br />
   <textarea
+    class="board"
     :class="[test ? 'success' : 'fail']"
     v-model="result"
     rows="10"
@@ -35,10 +36,13 @@ function execute(example) {
   </template>
 </template>
 <style>
-.success {
-  background-color: green;
+.board {
+  background-color: black;
   color: white;
   font-size: 18px;
+}
+.success {
+  background-color: green;
 }
 .fail {
   background-color: red;
