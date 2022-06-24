@@ -1,6 +1,6 @@
 import example from "./example";
 import solution from "./solution";
-import Executor from "../executor.js";
+import Executor from "../../executor.js";
 
 const record = { quantity: 3, itemPrice: 700 };
 

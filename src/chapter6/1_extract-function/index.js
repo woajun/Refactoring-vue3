@@ -1,6 +1,6 @@
 import example from "./example";
 import solution from "./solution";
-import Executor from "../executor.js";
+import Executor from "../../executor.js";
 import invoice from "./condition/invoice.js";
 
 export default [

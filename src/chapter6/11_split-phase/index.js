@@ -1,6 +1,6 @@
 import example from "./example";
 import solution from "./solution";
-import Executor from "../executor";
+import Executor from "../../executor";
 
 const p = {
   basePrice: 1000,

@@ -1,6 +1,6 @@
 import example from "./example";
 import solution from "./solution";
-import Executor from "../executor";
+import Executor from "../../executor";
 
 export function baseRate(month, year) {
   return new Date(year, month) > new Date(2017, 4) ? 10 : 9;
