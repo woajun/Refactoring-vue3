@@ -13,6 +13,7 @@ import ch6_6 from "./6_encapsulate_variable";
 import ch6_7 from "./7_rename-variable";
 import ch6_8 from "./8_introduce-parameter-object";
 import ch6_9 from "./9_combine-functions-into-class";
+import ch6_10 from "./10_combine-functions-into-transform";
 import Chapter from "@/components/Chapter.vue";
 
 const sections = {
@@ -30,6 +31,7 @@ const sections = {
   "7 Rename Variable": ch6_7,
   "8 Introduce Parameter Object": ch6_8,
   "9 Comibne Functions into Class": ch6_9,
+  "10 Comibne Functions into Transform": ch6_10,
 };
 </script>
 <template>
