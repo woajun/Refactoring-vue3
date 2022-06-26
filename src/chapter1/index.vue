@@ -15,7 +15,6 @@ const sections = {
     new Executor("중간풀이", solution1(i, p), example(i, p)),
     new Executor("풀이", solution2(i, p), example(i, p)),
   ],
-  강준희: [new Executor("연습1", try1(i, p), example(i, p))],
 };
 </script>
 <template>

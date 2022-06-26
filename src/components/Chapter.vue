@@ -1,5 +1,6 @@
 <script setup>
 import { ref, defineProps } from "vue";
+import TestBoard from "./TestBoard.vue";
 
 const result = ref("");
 const test = ref(true);
@@ -17,14 +18,7 @@ function execute(example) {
   <br />
   <h3>{{ title }}</h3>
   <br />
-  <textarea
-    class="board"
-    :class="[test ? 'success' : 'fail']"
-    v-model="result"
-    rows="10"
-    cols="50"
-    disabled
-  ></textarea>
+  <TestBoard :test="test" :result="result" />
   <template v-for="(section, key) in sections" :key="key">
     <div class="row">
       <label>{{ key }} : </label>
@@ -36,17 +30,6 @@ function execute(example) {
   </template>
 </template>
 <style>
-.board {
-  background-color: black;
-  color: white;
-  font-size: 18px;
-}
-.success {
-  background-color: green;
-}
-.fail {
-  background-color: red;
-}
 .row {
   margin-top: 3px;
 }
