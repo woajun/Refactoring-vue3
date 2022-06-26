@@ -1,15 +1,18 @@
 <script setup>
 import { defineProps } from "vue";
+import Tester from "@/assets/js/testerClass";
 import Executor from "../executor";
-defineProps({
+const props = defineProps({
   executor: Executor,
+  tester: Tester,
 });
+const either = props.tester ?? props.executor;
 </script>
 <template>
   <textarea
     class="board"
-    :class="[executor.test ? 'success' : 'fail']"
-    :value="executor.result"
+    :class="[either.test ? 'success' : 'fail']"
+    :value="either.result"
     rows="10"
     cols="50"
     disabled
