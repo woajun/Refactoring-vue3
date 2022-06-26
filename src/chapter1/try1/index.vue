@@ -1,13 +1,10 @@
 <script setup>
 import { defineProps } from "vue";
 import Executor from "../../executor";
+import TestBoard from "@/components/TestBoard.vue";
 
 defineProps({ executor: Executor });
 </script>
 <template>
-  <div>
-    {{ executor.name }}
-    {{ executor.expect }}
-    {{ executor.result }}
-  </div>
+  <TestBoard :executor="executor" />
 </template>

@@ -1,6 +1,6 @@
 <script setup>
 import { ref, defineProps } from "vue";
-import TestBoard from "./TestBoard.vue";
+// import TestBoard from "./TestBoard.vue";
 
 const result = ref("");
 const test = ref(true);
@@ -18,7 +18,7 @@ function execute(example) {
   <br />
   <h3>{{ title }}</h3>
   <br />
-  <TestBoard :test="test" :result="result" />
+  <!-- <TestBoard :test="test" :result="result" /> -->
   <template v-for="(section, key) in sections" :key="key">
     <div class="row">
       <label>{{ key }} : </label>

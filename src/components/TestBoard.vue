@@ -1,15 +1,15 @@
 <script setup>
 import { defineProps } from "vue";
+import Executor from "../executor";
 defineProps({
-  test: Boolean,
-  result: String,
+  executor: Executor,
 });
 </script>
 <template>
   <textarea
     class="board"
-    :class="[test ? 'success' : 'fail']"
-    :value="result"
+    :class="[executor.test ? 'success' : 'fail']"
+    :value="executor.result"
     rows="10"
     cols="50"
     disabled
